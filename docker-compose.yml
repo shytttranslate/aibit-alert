@@ -16,7 +16,7 @@ services:
       - ./.env.example:/aibit-api/.env.example
     env_file:
       - .env.production
-    command: pm2-runtime start ./dist/main.js --instances 2 -n aibit-api
+    command: pm2-runtime start ./dist/main.js --instances 1 -n aibit-api
     restart: unless-stopped
     networks:
       - global
