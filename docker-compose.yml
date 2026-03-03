@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    working_dir: /aibit-api
+    privileged: true
+    scale: 1
+    logging:
+      options:
+        max-size: '100k'
+        max-file: '10'
+    ports:
+      - '7000:3000'
+    volumes:
+      - ./node_modules:/aibit-api/node_modules
+      - ./.env.example:/aibit-api/.env.example
+    env_file:
+      - .env.production
+    command: pm2-runtime start ./dist/main.js --instances 2 -n aibit-api
+    restart: unless-stopped
+    networks:
+      - global
+networks:
+  global:
+    external: true

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  redis:
+    logging:
+      options:
+        max-size: '100k'
+        max-file: '10'
+    container_name: shytttAI_redis
+    image: 'bitnami/redis:latest'
+    privileged: true
+    ports:
+      - 6378:6379
+    networks:
+      - global
+    restart: unless-stopped
+    volumes:
+      - shytttAI_redis:/data
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+      - appendonly=yes
+networks:
+  global:
+    external: true
+volumes:
+  shytttAI_redis:
