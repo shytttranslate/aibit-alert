@@ -10,7 +10,7 @@ services:
         max-size: '100k'
         max-file: '10'
     ports:
-      - '7000:3000'
+      - '7040:3000'
     volumes:
       - ./node_modules:/aibit-api/node_modules
       - ./.env.example:/aibit-api/.env.example
